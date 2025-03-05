@@ -64,6 +64,10 @@ const led_point_t k_led_matrix_center = LED_MATRIX_CENTER;
 #    pragma error("LED_MATRIX_BRIGHTNESS_TURN_OFF_VAL must be less than LED_MATRIX_MAXIMUM_BRIGHTNESS")
 #endif
 
+#if defined(LED_MATRIX_BRIGHTNESS_TURN_OFF_VAL) && (LED_MATRIX_BRIGHTNESS_TURN_OFF_VAL >= LED_MATRIX_MAXIMUM_BRIGHTNESS)
+#    pragma error("LED_MATRIX_BRIGHTNESS_TURN_OFF_VAL must be less than LED_MATRIX_MAXIMUM_BRIGHTNESS")
+#endif
+
 // globals
 led_eeconfig_t led_matrix_eeconfig; // TODO: would like to prefix this with g_ for global consistancy, do this in another pr
 uint32_t       g_led_timer;
@@ -98,7 +102,7 @@ static last_hit_t last_hit_buffer;
 const uint8_t k_led_matrix_split[2] = LED_MATRIX_SPLIT;
 #endif
 
-EECONFIG_DEBOUNCE_HELPER(led_matrix, led_matrix_eeconfig);
+EECONFIG_DEBOUNCE_HELPER(led_matrix, EECONFIG_LED_MATRIX, led_matrix_eeconfig);
 
 void led_matrix_increase_val_helper(bool write_to_eeprom);
 

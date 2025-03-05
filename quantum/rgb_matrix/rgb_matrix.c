@@ -100,7 +100,7 @@ static last_hit_t last_hit_buffer;
 const uint8_t k_rgb_matrix_split[2] = RGB_MATRIX_SPLIT;
 #endif
 
-EECONFIG_DEBOUNCE_HELPER(rgb_matrix, rgb_matrix_config);
+EECONFIG_DEBOUNCE_HELPER(rgb_matrix, EECONFIG_RGB_MATRIX, rgb_matrix_config);
 
 void rgb_matrix_increase_val_helper(bool write_to_eeprom);
 
