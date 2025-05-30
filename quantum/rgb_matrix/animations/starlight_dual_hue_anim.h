@@ -37,3 +37,4 @@ bool STARLIGHT_DUAL_HUE(effect_params_t* params) {
 
 #    endif // RGB_MATRIX_CUSTOM_EFFECT_IMPLS
 #endif     // ENABLE_RGB_MATRIX_STARLIGHT_DUAL_HUE
+
