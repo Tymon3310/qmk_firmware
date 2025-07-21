@@ -80,10 +80,6 @@
 #    include "process_unicode_common.h"
 #endif
 
-#ifdef LAYER_LOCK_ENABLE
-#    include "process_layer_lock.h"
-#endif
-
 #ifdef AUDIO_ENABLE
 #    ifndef GOODBYE_SONG
 #        define GOODBYE_SONG SONG(GOODBYE_SOUND)
@@ -429,15 +425,6 @@ bool process_record_quantum(keyrecord_t *record) {
 #endif
 #ifdef TRI_LAYER_ENABLE
             process_tri_layer(keycode, record) &&
-#endif
-#if !defined(NO_ACTION_LAYER)
-            process_default_layer(keycode, record) &&
-#endif
-#ifdef LAYER_LOCK_ENABLE
-            process_layer_lock(keycode, record) &&
-#endif
-#ifdef BLUETOOTH_ENABLE
-            process_connection(keycode, record) &&
 #endif
             true)) {
         return false;
