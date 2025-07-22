@@ -161,4 +161,32 @@ led_config_t g_led_config = {
         1, 1, 1,          1,          1, 1, 1, 1, 1, 1, 1, 1
     }
 };
+#include "keychron_common.h"
+#include "keychron_rgb_type.h"
+
+#define DC_RED {HSV_RED}
+#define DC_BLU {HSV_BLUE}
+#define DC_YLW {HSV_YELLOW}
+
+// Default color for each LED (adapted for V5 MAX LED count/layout)
+HSV default_per_key_led[RGB_MATRIX_LED_COUNT] = {
+    DC_RED, DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW,
+    DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_YLW, DC_YLW, DC_YLW, DC_YLW,
+    DC_YLW, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_YLW, DC_YLW, DC_YLW,
+    DC_YLW, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_RED,
+    DC_YLW,         DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_BLU, DC_YLW,                 DC_YLW,
+    DC_YLW, DC_YLW, DC_YLW,                         DC_BLU,                         DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW, DC_YLW
+    // NOTE: If V5 MAX has more LEDs, extend this array accordingly
+};
+
+// Default region for each LED (adapted for V5 MAX LED count/layout)
+uint8_t default_region[RGB_MATRIX_LED_COUNT] = {
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,       0,
+    0, 0, 0,          0,          0, 0, 0, 0, 0, 0, 0
+    // NOTE: If V5 MAX has more LEDs, extend this array accordingly
+};
 #endif

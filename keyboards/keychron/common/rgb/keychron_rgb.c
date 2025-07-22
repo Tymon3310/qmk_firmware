@@ -1,3 +1,9 @@
+#ifndef RGB_MATRIX_CUSTOM_MIXED_RGB
+#define RGB_MATRIX_CUSTOM_MIXED_RGB 250
+#endif
+#ifndef RGB_MATRIX_CUSTOM_PER_KEY_RGB
+#define RGB_MATRIX_CUSTOM_PER_KEY_RGB 251
+#endif
 /* Copyright 2024 @ Keychron (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify

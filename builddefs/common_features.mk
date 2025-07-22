@@ -1,3 +1,5 @@
+    SRC += $(QUANTUM_DIR)/rgb_matrix/animations/pixel_rain_anim.c
+    SRC += $(QUANTUM_DIR)/rgb_matrix/rgb_matrix_handle_key_event_stub.c
 # Copyright 2017 Fred Sundvik
 #
 # This program is free software: you can redistribute it and/or modify

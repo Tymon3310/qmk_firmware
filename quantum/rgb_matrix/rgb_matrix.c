@@ -193,56 +193,9 @@ void rgb_matrix_region_set_color_all(uint8_t region, uint8_t red, uint8_t green,
 
 __attribute__((weak)) void process_rgb_matrix_kb(uint8_t row, uint8_t col, bool pressed) {}
 
-void process_rgb_matrix(uint8_t row, uint8_t col, bool pressed) {
-#ifndef RGB_MATRIX_SPLIT
-    if (!is_keyboard_master()) return;
-#endif
-
-#ifdef RGB_MATRIX_KEYREACTIVE_ENABLED
-    uint8_t led[LED_HITS_TO_REMEMBER];
-    uint8_t led_count = 0;
-
-#    if defined(RGB_MATRIX_KEYRELEASES)
-    if (!pressed)
-#    elif defined(RGB_MATRIX_KEYPRESSES)
-    if (pressed)
-#    endif // defined(RGB_MATRIX_KEYRELEASES)
-    {
-        led_count = rgb_matrix_map_row_column_to_led(row, col, led);
-    }
-
-    if (last_hit_buffer.count + led_count > LED_HITS_TO_REMEMBER) {
-        memcpy(&last_hit_buffer.x[0], &last_hit_buffer.x[led_count], LED_HITS_TO_REMEMBER - led_count);
-        memcpy(&last_hit_buffer.y[0], &last_hit_buffer.y[led_count], LED_HITS_TO_REMEMBER - led_count);
-        memcpy(&last_hit_buffer.tick[0], &last_hit_buffer.tick[led_count], (LED_HITS_TO_REMEMBER - led_count) * 2); // 16 bit
-        memcpy(&last_hit_buffer.index[0], &last_hit_buffer.index[led_count], LED_HITS_TO_REMEMBER - led_count);
-        last_hit_buffer.count = LED_HITS_TO_REMEMBER - led_count;
-    }
-
-    for (uint8_t i = 0; i < led_count; i++) {
-        uint8_t index                = last_hit_buffer.count;
-        last_hit_buffer.x[index]     = g_led_config.point[led[i]].x;
-        last_hit_buffer.y[index]     = g_led_config.point[led[i]].y;
-        last_hit_buffer.index[index] = led[i];
-        last_hit_buffer.tick[index]  = 0;
-        last_hit_buffer.count++;
-    }
-#endif // RGB_MATRIX_KEYREACTIVE_ENABLED
-
-#if defined(RGB_MATRIX_FRAMEBUFFER_EFFECTS) && defined(ENABLE_RGB_MATRIX_TYPING_HEATMAP)
-#    if defined(RGB_MATRIX_KEYRELEASES)
-    if (!pressed)
-#    else
-    if (pressed)
-#    endif // defined(RGB_MATRIX_KEYRELEASES)
-    {
-        if (rgb_matrix_config.mode == RGB_MATRIX_TYPING_HEATMAP) {
-            process_rgb_matrix_typing_heatmap(row, col);
-        }
-    }
-#endif // defined(RGB_MATRIX_FRAMEBUFFER_EFFECTS) && defined(ENABLE_RGB_MATRIX_TYPING_HEATMAP)
-    process_rgb_matrix_kb(row, col, pressed);
-}
+// void process_rgb_matrix(uint8_t row, uint8_t col, bool pressed) {
+//     // Duplicate definition, see process_keycode/process_rgb_matrix.c
+// }
 
 void rgb_matrix_test(void) {
     // Mask out bits 4 and 5

@@ -1,1 +1,2 @@
-# This file intentionally left blank
+SNAP_CLICK_ENABLE = yes
+KEYCHRON_RGB_ENABLE = yes
